@@ -12,4 +12,9 @@ const Quiz = require('./quiz')(sequelize, Sequelize.DataTypes);
 const User = require('./user')(sequelize, Sequelize.DataTypes);
 const Session = require('./session')(sequelize, Sequelize.DataTypes);
 
+// Relation 1-to-N between User and Quiz:
+User.hasMany(Quiz, {as: 'quizzes', foreignKey: 'authorId'});
+Quiz.belongsTo(User, {as: 'author', foreignKey: 'authorId'});
+
+
 module.exports = sequelize;
